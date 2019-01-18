@@ -38,14 +38,10 @@ namespace Alura.Loja.Testes.ConsoleApp
         {
             using (var repo = new ProdutoDAOEntity())
             {
-                var produtos = repo.Produtos();
-
-                Console.WriteLine(produtos.Count);
-
-                produtos.ForEach(produto => repo.Remover(produto));
-
-                Console.WriteLine(produtos.Count);
+                repo.Produtos().ForEach(produto => repo.Remover(produto));
             }
+
+            ConsultarUsandoEntity();
         }
 
         private static void ConsultarUsandoEntity()
