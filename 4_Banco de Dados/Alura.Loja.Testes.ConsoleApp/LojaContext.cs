@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Configuration;
 
 namespace Alura.Loja.Testes.ConsoleApp
 {
@@ -9,7 +10,7 @@ namespace Alura.Loja.Testes.ConsoleApp
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=FRNSZ_FERPC\\SQLEXPRESS;Database=LojaDB;Trusted_Connection=true;");
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["WorkVentron"].ToString());
         }
     }
 }

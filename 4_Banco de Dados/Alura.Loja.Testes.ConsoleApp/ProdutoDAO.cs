@@ -101,7 +101,7 @@ namespace Alura.Loja.Testes.ConsoleApp
                 p.Id = Convert.ToInt32(resultado["Id"]);
                 p.Nome = Convert.ToString(resultado["Nome"]);
                 p.Categoria = Convert.ToString(resultado["Categoria"]);
-                p.Preco = Convert.ToDouble(resultado["Preco"]);
+                p.Preco = Convert.ToDecimal(resultado["Preco"]);
                 lista.Add(p);
             }
             resultado.Close();

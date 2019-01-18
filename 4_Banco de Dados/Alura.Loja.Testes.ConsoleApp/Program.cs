@@ -16,6 +16,28 @@ namespace Alura.Loja.Testes.ConsoleApp
             GravarUsandoEntity();
             AtualizarProdutos();
 
+            using (var context = new ProdutoDAOEntity())
+            {
+                var produtos = context.Produtos();
+
+                produtos.ForEach(produto => Console.WriteLine(produto));
+
+                Console.WriteLine("\n=================================\n");
+
+                //    foreach (var entry in context.ChangeTracker.Entries())
+                //    {
+                //        Console.WriteLine(entry.State);
+                //    }
+
+                //    var produtoChanges = context.Produtos.Last();
+                //    produtoChanges.Nome = "Harry Potter E A Pedra Filosofal";
+
+                //    foreach (var entry in context.ChangeTracker.Entries())
+                //    {
+                //        Console.WriteLine(entry.State);
+                //    }
+            }
+
             Console.Read();
         }
 
@@ -57,7 +79,7 @@ namespace Alura.Loja.Testes.ConsoleApp
             Produto p = new Produto();
             p.Nome = "Fantastic Beasts and Where to Find Them";
             p.Categoria = "Livros";
-            p.Preco = 48.50;
+            p.Preco = 48.50M;
 
             using (var contexto = new ProdutoDAOEntity())
             {
@@ -70,7 +92,7 @@ namespace Alura.Loja.Testes.ConsoleApp
             Produto p = new Produto();
             p.Nome = "Harry Potter e a Ordem da Fênix";
             p.Categoria = "Livros";
-            p.Preco = 19.89;
+            p.Preco = 19.89M;
 
             using (var repo = new ProdutoDAO())
             {
