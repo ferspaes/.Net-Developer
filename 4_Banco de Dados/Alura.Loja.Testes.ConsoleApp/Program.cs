@@ -10,8 +10,50 @@ namespace Alura.Loja.Testes.ConsoleApp
     {
         static void Main(string[] args)
         {
-            //GravarUsandoAdoNet();
             GravarUsandoEntity();
+            ConsultarUsandoEntity();
+            ExcluirProdutos();
+            GravarUsandoEntity();
+            AtualizarProdutos();
+
+            Console.Read();
+        }
+
+        private static void AtualizarProdutos()
+        {
+            ConsultarUsandoEntity();
+
+            using (var repo = new ProdutoDAOEntity())
+            {
+                var produto = repo.Produtos().First();
+
+                produto.Nome = "Harry Potter e as Relíquias da Morte";
+                repo.Atualizar(produto);
+            }
+
+            ConsultarUsandoEntity();
+        }
+
+        private static void ExcluirProdutos()
+        {
+            using (var repo = new ProdutoDAOEntity())
+            {
+                var produtos = repo.Produtos();
+
+                Console.WriteLine(produtos.Count);
+
+                produtos.ForEach(produto => repo.Remover(produto));
+
+                Console.WriteLine(produtos.Count);
+            }
+        }
+
+        private static void ConsultarUsandoEntity()
+        {
+            using (var repo = new ProdutoDAOEntity())
+            {
+                repo.Produtos().ForEach(produto => Console.WriteLine(produto));
+            }
         }
 
         private static void GravarUsandoEntity()
@@ -21,10 +63,9 @@ namespace Alura.Loja.Testes.ConsoleApp
             p.Categoria = "Livros";
             p.Preco = 48.50;
 
-            using (var contexto = new LojaContext())
+            using (var contexto = new ProdutoDAOEntity())
             {
-                contexto.Produtos.Add(p);
-                contexto.SaveChanges();
+                contexto.Adicionar(p);
             }
         }
 

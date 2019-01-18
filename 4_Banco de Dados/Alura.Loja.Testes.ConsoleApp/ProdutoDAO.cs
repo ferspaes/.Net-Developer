@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace Alura.Loja.Testes.ConsoleApp
 {
-    internal class ProdutoDAO : IDisposable
+    internal class ProdutoDAO : IDisposable, IProdutoDao
     {
         private SqlConnection conexao;
 
@@ -19,7 +19,7 @@ namespace Alura.Loja.Testes.ConsoleApp
             this.conexao.Close();
         }
 
-        internal void Adicionar(Produto p)
+        public void Adicionar(Produto p)
         {
             try
             {
@@ -36,13 +36,14 @@ namespace Alura.Loja.Testes.ConsoleApp
                 insertCmd.Parameters.Add(paramPreco);
 
                 insertCmd.ExecuteNonQuery();
-            } catch (SqlException e)
+            }
+            catch (SqlException e)
             {
                 throw new SystemException(e.Message, e);
             }
         }
 
-        internal void Atualizar(Produto p)
+        public void Atualizar(Produto p)
         {
             try
             {
@@ -60,13 +61,14 @@ namespace Alura.Loja.Testes.ConsoleApp
 
                 updateCmd.ExecuteNonQuery();
 
-            } catch (SqlException e)
+            }
+            catch (SqlException e)
             {
                 throw new SystemException(e.Message, e);
             }
         }
 
-        internal void Remover(Produto p)
+        public void Remover(Produto p)
         {
             try
             {
@@ -78,13 +80,14 @@ namespace Alura.Loja.Testes.ConsoleApp
 
                 deleteCmd.ExecuteNonQuery();
 
-            } catch(SqlException e)
+            }
+            catch (SqlException e)
             {
                 throw new SystemException(e.Message, e);
             }
         }
 
-        internal IList<Produto> Produtos()
+        public List<Produto> Produtos()
         {
             var lista = new List<Produto>();
 
