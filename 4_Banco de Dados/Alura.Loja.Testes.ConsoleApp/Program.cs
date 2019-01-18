@@ -11,31 +11,35 @@ namespace Alura.Loja.Testes.ConsoleApp
         static void Main(string[] args)
         {
             GravarUsandoEntity();
+            GravarUsandoEntity();
+            GravarUsandoEntity();
+            GravarUsandoEntity();
+            GravarUsandoEntity();
             ConsultarUsandoEntity();
             ExcluirProdutos();
             GravarUsandoEntity();
             AtualizarProdutos();
 
-            using (var context = new ProdutoDAOEntity())
+            using (var context = new LojaContext())
             {
-                var produtos = context.Produtos();
+                var produtos = context.Produtos.ToList();
 
                 produtos.ForEach(produto => Console.WriteLine(produto));
 
                 Console.WriteLine("\n=================================\n");
 
-                //    foreach (var entry in context.ChangeTracker.Entries())
-                //    {
-                //        Console.WriteLine(entry.State);
-                //    }
+                foreach (var entry in context.ChangeTracker.Entries())
+                {
+                    Console.WriteLine(entry.State);
+                }
 
-                //    var produtoChanges = context.Produtos.Last();
-                //    produtoChanges.Nome = "Harry Potter E A Pedra Filosofal";
+                var produtoChanges = context.Produtos.Last();
+                produtoChanges.Nome = "Harry Potter E A Pedra Filosofal";
 
-                //    foreach (var entry in context.ChangeTracker.Entries())
-                //    {
-                //        Console.WriteLine(entry.State);
-                //    }
+                foreach (var entry in context.ChangeTracker.Entries())
+                {
+                    Console.WriteLine(entry.State);
+                }
             }
 
             Console.Read();
@@ -60,7 +64,7 @@ namespace Alura.Loja.Testes.ConsoleApp
         {
             using (var repo = new ProdutoDAOEntity())
             {
-                repo.Produtos().ForEach(produto => repo.Remover(produto));
+                repo.Remover(repo.Produtos().FirstOrDefault());
             }
 
             ConsultarUsandoEntity();
