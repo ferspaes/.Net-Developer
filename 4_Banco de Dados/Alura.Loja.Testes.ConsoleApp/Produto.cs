@@ -2,14 +2,15 @@
 {
     public class Produto
     {
-        public int Id { get; internal set; }
+        public int Id { get; protected set; }
         public string Nome { get; internal set; }
         public string Categoria { get; internal set; }
-        public decimal Preco { get; internal set; }
+        public double PrecoUnitario { get; internal set; }
+        public string Unidade { get; internal set; }
 
         public override string ToString()
         {
-            return $"Nome: {Nome}, Categoria: {Categoria}, Preço: {Preco}";
+            return $"Nome: {Nome}, Categoria: {Categoria}, Preço: {PrecoUnitario}";
         }
     }
 }

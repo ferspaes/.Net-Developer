@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace Alura.Loja.Testes.ConsoleApp
         public ProdutoDAOEntity()
         {
             this.contexto = new LojaContext();
+            this.contexto.Database.Migrate();
         }
 
         public void Adicionar(Produto p)
