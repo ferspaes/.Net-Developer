@@ -10,7 +10,7 @@ namespace Alura.Loja.Testes.ConsoleApp
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["WorkVentron"].ToString());
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["ProjectLoja"].ToString());
         }
     }
 }
