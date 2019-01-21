@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,86 @@ namespace Alura.Loja.Testes.ConsoleApp
     class Program
     {
         static void Main(string[] args)
+        {
+            using (var contexto = new LojaContext())
+            {
+                var produtosCompras = contexto.Produtos
+                    .Include(produto => produto.Compras)
+                    .Where(compra => compra.Id.Equals(40))
+                    .FirstOrDefault();
+
+                Console.WriteLine(produtosCompras);
+                produtosCompras.Compras.ForEach(compra => Console.WriteLine(compra));
+            }
+
+            //SelectNaPromocao();
+            //AdicionaNovaPromocao();
+            //Promocao promocaoPascoa = MuitosParaMuitos();
+            //AulaAdicionandoCompraProduto();
+            //InsertCliente();
+
+            Console.Read();
+        }
+
+        private static void SelectNaPromocao()
+        {
+            using (var contextoSelect = new LojaContext())
+            {
+                var promocao = contextoSelect.Promocoes
+                    .Include(promocoes => promocoes.Produtos)
+                    .ThenInclude(produtoPromocao => produtoPromocao.Produto)
+                    .FirstOrDefault();
+
+                promocao.Produtos.ForEach(promocaoProduto => Console.WriteLine(promocaoProduto.Produto));
+            }
+        }
+
+        private static void AdicionaNovaPromocao()
+        {
+            var nescau = new Produto();
+            nescau.Nome = "Nescau";
+            nescau.PrecoUnitario = 9.99;
+            nescau.Unidade = "Gramas";
+            nescau.Categoria = "Bebidas";
+
+            var vinho = new Produto();
+            nescau.Nome = "Vinho";
+            nescau.PrecoUnitario = 15.99;
+            nescau.Unidade = "Litros";
+            nescau.Categoria = "Bebidas";
+
+            var leite = new Produto();
+            nescau.Nome = "Leite";
+            nescau.PrecoUnitario = 2.99;
+            nescau.Unidade = "Litros";
+            nescau.Categoria = "Bebidas";
+
+            using (var contextoProdutosNovos = new LojaContext())
+            {
+                contextoProdutosNovos.Produtos.Add(nescau);
+                contextoProdutosNovos.Produtos.Add(vinho);
+                contextoProdutosNovos.Produtos.Add(leite);
+                contextoProdutosNovos.SaveChanges();
+            }
+
+            var promocaoPrimavera = new Promocao();
+            promocaoPrimavera.DataInicio = new DateTime(2018, 9, 1);
+            promocaoPrimavera.DataFim = new DateTime(2018, 9, 30);
+            promocaoPrimavera.Descricao = "Promoção Primavera";
+
+            using (var contexto = new LojaContext())
+            {
+                var produtosPromocao = contexto.Produtos
+                                                .Where(produto => produto.Categoria.Equals("Bebidas"))
+                                                .ToList();
+
+                produtosPromocao.ForEach(produto => promocaoPrimavera.InserirProduto(produto));
+
+                contexto.SaveChanges();
+            }
+        }
+
+        private static void InsertCliente()
         {
             var fulano = new Cliente();
             fulano.Nome = "Fulaninho de Tals";
@@ -27,9 +108,6 @@ namespace Alura.Loja.Testes.ConsoleApp
                 contexto.Clientes.Add(fulano);
                 contexto.SaveChanges();
             }
-
-            //Promocao promocaoPascoa = MuitosParaMuitos();
-            //AulaAdicionandoCompraProduto();
         }
 
         private static Promocao MuitosParaMuitos()
@@ -66,7 +144,7 @@ namespace Alura.Loja.Testes.ConsoleApp
             using (var contexto = new LojaContext())
             {
                 contexto.Compras.Add(compra);
-                //contexto.SaveChanges();
+                contexto.SaveChanges();
             }
         }
     }

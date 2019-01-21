@@ -11,5 +11,10 @@ namespace Alura.Loja.Testes.ConsoleApp
         public Produto Produto { get; internal set; }
         public double Valor { get; internal set; }
         public DateTime Data { get; internal set; }
+
+        public override string ToString()
+        {
+            return $"{Produto.Nome} {Quantidade} X R${Produto.PrecoUnitario} = R${Valor}";
+        }
     }
 }
