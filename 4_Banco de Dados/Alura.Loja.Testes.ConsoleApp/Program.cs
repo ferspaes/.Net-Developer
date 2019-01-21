@@ -13,20 +13,39 @@ namespace Alura.Loja.Testes.ConsoleApp
         {
             using (var contexto = new LojaContext())
             {
-                var produtosCompras = contexto.Produtos
+                var produtosCompras = contexto
+                    .Produtos
+                    .Where(compra => compra.Id.Equals(1))
+                    .FirstOrDefault();
+
+                contexto.Entry(produtosCompras)
+                    .Collection(produto => produto.Compras)
+                    .Query()
+                    .Where(compra => compra.Valor > 1)
+                    .Load();
+
+                Console.WriteLine(produtosCompras);
+                produtosCompras.Compras.ForEach(compra => Console.WriteLine(compra));
+            }
+
+            using (var contexto = new LojaContext())
+            {
+                var produtosCompras = contexto
+                    .Produtos
                     .Include(produto => produto.Compras)
-                    .Where(compra => compra.Id.Equals(40))
+                    .Where(compra => compra.Id.Equals(1))
                     .FirstOrDefault();
 
                 Console.WriteLine(produtosCompras);
                 produtosCompras.Compras.ForEach(compra => Console.WriteLine(compra));
             }
 
-            //SelectNaPromocao();
+            //InsertCliente();
+            //AulaAdicionandoCompraProduto();
             //AdicionaNovaPromocao();
             //Promocao promocaoPascoa = MuitosParaMuitos();
-            //AulaAdicionandoCompraProduto();
-            //InsertCliente();
+            //SelectNaPromocao();
+
 
             Console.Read();
         }
@@ -35,12 +54,16 @@ namespace Alura.Loja.Testes.ConsoleApp
         {
             using (var contextoSelect = new LojaContext())
             {
-                var promocao = contextoSelect.Promocoes
+                var promocao = contextoSelect
+                    .Promocoes
                     .Include(promocoes => promocoes.Produtos)
                     .ThenInclude(produtoPromocao => produtoPromocao.Produto)
                     .FirstOrDefault();
 
-                promocao.Produtos.ForEach(promocaoProduto => Console.WriteLine(promocaoProduto.Produto));
+                foreach (var item in promocao.Produtos)
+                {
+                    Console.WriteLine(item);
+                }
             }
         }
 
@@ -53,16 +76,16 @@ namespace Alura.Loja.Testes.ConsoleApp
             nescau.Categoria = "Bebidas";
 
             var vinho = new Produto();
-            nescau.Nome = "Vinho";
-            nescau.PrecoUnitario = 15.99;
-            nescau.Unidade = "Litros";
-            nescau.Categoria = "Bebidas";
+            vinho.Nome = "Vinho";
+            vinho.PrecoUnitario = 15.99;
+            vinho.Unidade = "Litros";
+            vinho.Categoria = "Bebidas";
 
             var leite = new Produto();
-            nescau.Nome = "Leite";
-            nescau.PrecoUnitario = 2.99;
-            nescau.Unidade = "Litros";
-            nescau.Categoria = "Bebidas";
+            leite.Nome = "Leite";
+            leite.PrecoUnitario = 2.99;
+            leite.Unidade = "Litros";
+            leite.Categoria = "Bebidas";
 
             using (var contextoProdutosNovos = new LojaContext())
             {
@@ -124,6 +147,12 @@ namespace Alura.Loja.Testes.ConsoleApp
             promocaoPascoa.InserirProduto(cafe);
             promocaoPascoa.InserirProduto(ovoDePascoa);
             promocaoPascoa.InserirProduto(chocolate);
+
+            using (var contexto = new LojaContext())
+            {
+                contexto.Promocoes.Add(promocaoPascoa);
+                contexto.SaveChanges();
+            }
             return promocaoPascoa;
         }
 
