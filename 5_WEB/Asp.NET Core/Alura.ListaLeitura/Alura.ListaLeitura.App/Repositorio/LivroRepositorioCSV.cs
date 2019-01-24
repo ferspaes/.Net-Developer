@@ -22,7 +22,6 @@ namespace Alura.ListaLeitura.App.Repositorio
 
             var nomeArquivo = Path.GetFileName(nomeArquivoCSV);
             var diretorio = nomeArquivoCSV.Replace(nomeArquivo, "");
-            Directory.CreateDirectory(diretorio);
 
             using (var file = File.OpenText(LivroRepositorioCSV.nomeArquivoCSV))
             {

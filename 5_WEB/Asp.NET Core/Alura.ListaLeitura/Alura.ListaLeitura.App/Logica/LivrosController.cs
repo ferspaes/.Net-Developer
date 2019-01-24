@@ -8,14 +8,13 @@ using System.Threading.Tasks;
 
 namespace Alura.ListaLeitura.App.Logica
 {
-    public class CarregaLivros
+    public class LivrosController
     {
-        public static Task VerDetalhesLivros(HttpContext context)
+        public string Detalhes(int id)
         {
-            int id = Convert.ToInt32(context.GetRouteValue("id"));
             var _repo = new LivroRepositorioCSV();
             var livro = _repo.Todos.First(l => l.Id == id);
-            return context.Response.WriteAsync(livro.Detalhes());
+            return livro.Detalhes();
         }
 
         public static Task LivrosParaLer(HttpContext context)
@@ -68,6 +67,11 @@ namespace Alura.ListaLeitura.App.Logica
             var html = HTMLUtils.CarregarPaginaHTML("Formulario");
 
             return context.Response.WriteAsync(html);
+        }
+
+        public string Teste()
+        {
+            return "Testando nova implementaçào!";
         }
     }
 }
