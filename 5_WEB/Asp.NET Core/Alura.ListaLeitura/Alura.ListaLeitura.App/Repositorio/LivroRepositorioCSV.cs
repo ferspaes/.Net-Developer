@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Alura.ListaLeitura.App.Negocio;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Alura.ListaLeitura.App.Negocio;
 using System.IO;
 using System.Linq;
 
@@ -74,7 +73,7 @@ namespace Alura.ListaLeitura.App.Repositorio
             var id = Todos.Select(l => l.Id).Max();
             using (var file = File.AppendText(LivroRepositorioCSV.nomeArquivoCSV))
             {
-                file.WriteLine($"para-ler;{id+1};{livro.Titulo};{livro.Autor}");
+                file.WriteLine($"para-ler;{id + 1};{livro.Titulo};{livro.Autor}");
             }
         }
     }
