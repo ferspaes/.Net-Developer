@@ -1,6 +1,4 @@
-﻿using Alura.ListaLeitura.App.Logica;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Alura.ListaLeitura.App
