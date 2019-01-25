@@ -1,6 +1,7 @@
 ﻿using Alura.ListaLeitura.App.HTML;
 using Alura.ListaLeitura.App.Repositorio;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -60,11 +61,10 @@ namespace Alura.ListaLeitura.App.Logica
             return context.Response.WriteAsync(html);
         }
 
-        public static Task FormularioAdicionarLivros(HttpContext context)
+        public IActionResult Formulario()
         {
-            var html = HTMLUtils.CarregarPaginaHTML("Formulario");
-
-            return context.Response.WriteAsync(html);
+            var html = new ViewResult { ViewName = "formulario" };
+            return html;
         }
 
         public string Teste()
