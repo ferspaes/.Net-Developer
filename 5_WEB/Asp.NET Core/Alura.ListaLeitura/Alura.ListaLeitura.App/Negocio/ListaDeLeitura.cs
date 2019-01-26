@@ -7,6 +7,7 @@ namespace Alura.ListaLeitura.App.Negocio
     public class ListaDeLeitura
     {
         private List<Livro> _livros;
+        public string Titulo { get; set; }
 
         public ListaDeLeitura(string titulo, params Livro[] livros)
         {
@@ -15,7 +16,6 @@ namespace Alura.ListaLeitura.App.Negocio
             _livros.ForEach(l => l.Lista = this);
         }
 
-        public string Titulo { get; set; }
         public IEnumerable<Livro> Livros
         {
             get { return _livros; }

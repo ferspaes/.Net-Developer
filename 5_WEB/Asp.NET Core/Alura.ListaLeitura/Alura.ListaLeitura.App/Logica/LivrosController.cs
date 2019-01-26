@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Alura.ListaLeitura.App.Logica
 {
-    public class LivrosController
+    public class LivrosController : Controller
     {
 
         public IEnumerable<Livro> Livros { get; set; }
@@ -22,26 +22,25 @@ namespace Alura.ListaLeitura.App.Logica
         public IActionResult ParaLer()
         {
             var _repo = new LivroRepositorioCSV();
-            var html = new ViewResult { ViewName = "Lista" };
             ViewBag.Livros = _repo.ParaLer.Livros;
 
-            return html;
+            return View("Lista");
         }
 
         public IActionResult Lendo()
         {
             var _repo = new LivroRepositorioCSV();
-            var html = new ViewResult { ViewName = "Lista" };
+            ViewBag.Livros = _repo.Lendo.Livros;
 
-            return html;
+            return View("Lista");
         }
 
         public IActionResult Lidos(HttpContext context)
         {
             var _repo = new LivroRepositorioCSV();
-            var html = new ViewResult { ViewName = "Lista" };
+            ViewBag.Livros = _repo.Lidos.Livros;
 
-            return html;
+            return View("Lista");
         }
 
         public IActionResult Formulario()
