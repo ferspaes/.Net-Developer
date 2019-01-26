@@ -1,14 +1,17 @@
-﻿using Alura.ListaLeitura.App.HTML;
+﻿using Alura.ListaLeitura.App.Negocio;
 using Alura.ListaLeitura.App.Repositorio;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Alura.ListaLeitura.App.Logica
 {
     public class LivrosController
     {
+
+        public IEnumerable<Livro> Livros { get; set; }
+
         public string Detalhes(int id)
         {
             var _repo = new LivroRepositorioCSV();
@@ -16,49 +19,29 @@ namespace Alura.ListaLeitura.App.Logica
             return livro.Detalhes();
         }
 
-        public static Task LivrosParaLer(HttpContext context)
+        public IActionResult ParaLer()
         {
-            var html = HTMLUtils.CarregarPaginaHTML("ParaLer");
             var _repo = new LivroRepositorioCSV();
+            var html = new ViewResult { ViewName = "Lista" };
+            ViewBag.Livros = _repo.ParaLer.Livros;
 
-            foreach (var livro in _repo.ParaLer.Livros)
-            {
-                html = html.Replace("#NOVOITEM#", $"<li>{livro.Titulo} - {livro.Autor}</li>#NOVOITEM#");
-            }
-
-            html = html.Replace("#NOVOITEM#", "");
-
-            return context.Response.WriteAsync(html);
+            return html;
         }
 
-        public static Task LivrosLendo(HttpContext context)
+        public IActionResult Lendo()
         {
-            var html = HTMLUtils.CarregarPaginaHTML("Lendo");
             var _repo = new LivroRepositorioCSV();
+            var html = new ViewResult { ViewName = "Lista" };
 
-            foreach (var livro in _repo.Lendo.Livros)
-            {
-                html = html.Replace("#NOVOITEM#", $"<li>{livro.Titulo} - {livro.Autor}</li>#NOVOITEM#");
-            }
-
-            html = html.Replace("#NOVOITEM#", "");
-
-            return context.Response.WriteAsync(html);
+            return html;
         }
 
-        public static Task LivrosLidos(HttpContext context)
+        public IActionResult Lidos(HttpContext context)
         {
-            var html = HTMLUtils.CarregarPaginaHTML("Lidos");
             var _repo = new LivroRepositorioCSV();
+            var html = new ViewResult { ViewName = "Lista" };
 
-            foreach (var livro in _repo.Lidos.Livros)
-            {
-                html = html.Replace("#NOVOITEM#", $"<li>{livro.Titulo} - {livro.Autor}</li>#NOVOITEM#");
-            }
-
-            html = html.Replace("#NOVOITEM#", "");
-
-            return context.Response.WriteAsync(html);
+            return html;
         }
 
         public IActionResult Formulario()

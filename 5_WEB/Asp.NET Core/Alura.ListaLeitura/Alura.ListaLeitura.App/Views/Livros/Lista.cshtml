@@ -10,8 +10,10 @@
     <h1>Livros Lendo</h1>
 
     <ul>
-
-        #NOVOITEM#
+        @foreach (var livro in ViewBag.livros)
+        {
+            <li>@livro.nome - @livro.autor</li>
+        }
 
     </ul>
 
