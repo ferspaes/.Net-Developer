@@ -1,5 +1,3 @@
-using System;
-
 namespace CasaDoCodigo.Models
 {
     public class ErrorViewModel
