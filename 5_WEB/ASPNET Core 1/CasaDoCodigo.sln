@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Recursos", "_Recursos", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dados", "dados", "{7B729AFF-9C27-42AA-9EAE-1CB9C47AAEE6}"
 	ProjectSection(SolutionItems) = preProject
-		_Recursos\dados\livros.json = _Recursos\dados\livros.json
-		_Recursos\dados\modelo.cs = _Recursos\dados\modelo.cs
 		_Recursos\dados\modelo.png = _Recursos\dados\modelo.png
 	EndProjectSection
 EndProject
