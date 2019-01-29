@@ -19,6 +19,17 @@ namespace CasaDoCodigo
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Produto>().HasKey(produto => produto.Id);
+
+            modelBuilder.Entity<Pedido>().HasKey(produto => produto.Id);
+            modelBuilder.Entity<Pedido>().HasMany(pedido => pedido.Items).WithOne(item => item.Pedido);
+            modelBuilder.Entity<Pedido>().HasOne(pedidos => pedidos.Cadastro).WithOne(cadastro => cadastro.Pedido);
+
+            modelBuilder.Entity<ItemPedido>().HasKey(produto => produto.Id);
+            modelBuilder.Entity<ItemPedido>().HasOne(item => item.Pedido);
+            modelBuilder.Entity<ItemPedido>().HasOne(pedido => pedido.Produto);
+
+            modelBuilder.Entity<Cadastro>().HasKey(produto => produto.Id);
+            modelBuilder.Entity<Cadastro>().HasOne(cadastro => cadastro.Pedido);
         }
     }
 }
