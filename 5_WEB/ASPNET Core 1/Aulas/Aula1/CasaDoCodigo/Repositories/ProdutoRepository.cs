@@ -1,5 +1,6 @@
 ﻿using CasaDoCodigo.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CasaDoCodigo.Repositories
 {
@@ -17,6 +18,11 @@ namespace CasaDoCodigo.Repositories
             livros.ForEach(livro => contexto.Set<Produto>().Add(new Produto(livro.Codigo, livro.Nome, livro.Preco)));
 
             contexto.SaveChanges();
+        }
+
+        public IList<Produto> GetProdutos()
+        {
+            return contexto.Set<Produto>().ToList();
         }
     }
 }
