@@ -31,7 +31,7 @@ namespace CasaDoCodigo.Repositories
                                                && itemPedido.Produto.Codigo.Equals(codigo))
                                         .SingleOrDefault();
 
-            if (itemPedidoEncontrado.Equals(null))
+            if (itemPedidoEncontrado == null)
             {
                 itemPedidoEncontrado = new ItemPedido(pedidoEncontrado, produtoEncontrado, 1, produtoEncontrado.Preco);
                 contexto.Set<ItemPedido>().Add(itemPedidoEncontrado);

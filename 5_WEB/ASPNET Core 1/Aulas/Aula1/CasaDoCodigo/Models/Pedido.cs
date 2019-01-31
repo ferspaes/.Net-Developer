@@ -15,7 +15,14 @@ namespace CasaDoCodigo.Models
             Cadastro = new Cadastro()
             {
                 Bairro = "bairro",
-                CEP = "cep"
+                CEP = "cep",
+                Complemento = "complemento",
+                Email = "email",
+                Endereco = "endereco",
+                Municipio = "municipio",
+                Nome = "nome",
+                Telefone = "telefone",
+                UF = "uf"
             };
         }
 
