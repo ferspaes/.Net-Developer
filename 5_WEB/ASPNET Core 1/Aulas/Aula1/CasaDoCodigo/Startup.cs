@@ -26,7 +26,11 @@ namespace CasaDoCodigo
             string ConnectionStrings = Configuration.GetConnectionString("Default");
 
             services.AddDbContext<ApplicationContext>(options =>
-                options.UseSqlServer(ConnectionStrings));
+                options
+                .UseSqlServer(ConnectionStrings));
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
 
             services.AddTransient<ILivro, Livro>();
             services.AddTransient<IDataService, DataService>();
@@ -42,8 +46,10 @@ namespace CasaDoCodigo
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
+                app.UseSession();
                 app.UseDeveloperExceptionPage();
             }
+
             else
             {
                 app.UseExceptionHandler("/Home/Error");
@@ -55,7 +61,7 @@ namespace CasaDoCodigo
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Pedido}/{action=Carrossel}/{id?}");
+                    template: "{controller=Pedido}/{action=Carrossel}/{codigo?}");
             });
 
             serviceProvider
