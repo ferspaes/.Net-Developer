@@ -46,7 +46,6 @@ namespace CasaDoCodigo
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseSession();
                 app.UseDeveloperExceptionPage();
             }
 
@@ -56,6 +55,7 @@ namespace CasaDoCodigo
             }
 
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

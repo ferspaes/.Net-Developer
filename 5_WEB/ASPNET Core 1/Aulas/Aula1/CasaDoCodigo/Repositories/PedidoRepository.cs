@@ -1,5 +1,6 @@
 ﻿using CasaDoCodigo.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
@@ -18,7 +19,7 @@ namespace CasaDoCodigo.Repositories
         {
             var produtoEncontrado = contexto.Set<Produto>()
                                         .Where(produto => produto.Codigo.Equals(codigo))
-                                        .SingleOrDefault();
+                                        .FirstOrDefault();
 
             if (produtoEncontrado.Equals(null))
                 throw new ArgumentException("Produto não encontrado!");
@@ -43,6 +44,8 @@ namespace CasaDoCodigo.Repositories
             var pedidoId = GetPedidoId();
 
             var pedidoEncontrado = DBSet
+                                    .Include(pedido => pedido.Items)
+                                        .ThenInclude(itemPedido => itemPedido.Produto)
                                     .Where(pedido => pedido.Id.Equals(pedidoId))
                                     .SingleOrDefault();
 
@@ -58,12 +61,12 @@ namespace CasaDoCodigo.Repositories
 
         }
 
-        public int? GetPedidoId()
+        private int? GetPedidoId()
         {
             return contextAccessor.HttpContext.Session.GetInt32("pedidoId");
         }
 
-        public void SetPedidoId(int pedidoId)
+        private void SetPedidoId(int pedidoId)
         {
             contextAccessor.HttpContext.Session.SetInt32("pedidoId", pedidoId);
         }

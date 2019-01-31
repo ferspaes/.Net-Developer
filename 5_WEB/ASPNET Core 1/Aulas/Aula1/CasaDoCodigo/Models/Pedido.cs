@@ -12,7 +12,11 @@ namespace CasaDoCodigo.Models
 
         public Pedido()
         {
-            Cadastro = new Cadastro();
+            Cadastro = new Cadastro()
+            {
+                Bairro = "bairro",
+                CEP = "cep"
+            };
         }
 
         public Pedido(Cadastro cadastro)
