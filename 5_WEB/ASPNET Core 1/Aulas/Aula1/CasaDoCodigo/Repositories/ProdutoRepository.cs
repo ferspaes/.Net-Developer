@@ -14,7 +14,7 @@ namespace CasaDoCodigo.Repositories
             livros
                 .ForEach(livro =>
                 {
-                    if (DBSet
+                    if (!DBSet
                             .Where(produto => produto.Codigo == livro.Codigo)
                             .Any())
                     {
