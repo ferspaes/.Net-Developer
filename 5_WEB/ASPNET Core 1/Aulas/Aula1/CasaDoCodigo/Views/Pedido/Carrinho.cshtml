@@ -93,7 +93,9 @@
 {
     <script type="text/javascript">
         function incrementaQuantidade(btn) {
-            var idProduto = $(btn).attr('item-id');
+            var linhaDoItem = $(btn).parent('[item-id]');
+            var idProduto = $(linhaDoItem).attr('item-id');
+            var itemQtde = $(btn).find('input').val();
             debugger;
         }
 
