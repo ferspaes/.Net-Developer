@@ -28,7 +28,7 @@
 
         @foreach (var item in Model)
         {
-            <div class="row row-center linha-produto">
+            <div class="row row-center linha-produto" item-id="@item.Id">
                 <div class="col-md-3">
                     <img class="img-produto-carrinho" src="/images/produtos/large_@(item.Produto.Codigo).jpg" />
                 </div>
@@ -44,7 +44,8 @@
                         <input type="text" value="2"
                                class="form-control text-center" />
                         <span class="input-group-btn">
-                            <button class="btn btn-default">
+                            <button class="btn btn-default"
+                                    onclick="incrementaQuantidade(this)">
                                 <span class="glyphicon-plus"></span>
                             </button>
                         </span>
@@ -82,8 +83,20 @@
                 Adicionar Produtos
             </a>
             <a class="btn btn-success" asp-action="Cadastro">
-                Preencher Cadastro
+                Prosseguir Para Compra
             </a>
         </div>
     </div>
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        function incrementaQuantidade(btn) {
+            var idProduto = $(btn).attr('item-id');
+            debugger;
+        }
+
+    </script>
+
+}
