@@ -90,12 +90,24 @@
 </div>
 
 @section Scripts
-{
+    {
     <script type="text/javascript">
         function incrementaQuantidade(btn) {
             var linhaDoItem = $(btn).parent('[item-id]');
             var idProduto = $(linhaDoItem).attr('item-id');
             var itemQtde = $(btn).find('input').val();
+            var data =
+            {
+                Id = idProduto,
+                Quantidade = itemQtde
+            };
+
+            $.ajax({
+                url: '/Pedido/UpdateQuantidadePedido',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data)
+            });
             debugger;
         }
 
