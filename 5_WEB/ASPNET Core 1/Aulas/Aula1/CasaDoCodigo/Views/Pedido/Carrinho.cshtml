@@ -45,8 +45,10 @@
                                class="form-control text-center" />
                         <span class="input-group-btn">
                             <button class="btn btn-default"
-                                    onclick="incrementaQuantidade(this)">
+                                    onclick="clickIncremento(this)">
+
                                 <span class="glyphicon-plus"></span>
+
                             </button>
                         </span>
                     </div>
@@ -92,14 +94,17 @@
 @section Scripts
     {
     <script type="text/javascript">
-        function incrementaQuantidade(btn) {
-            var linhaDoItem = $(btn).parent('[item-id]');
+
+        function clickIncremento(btn) {
+            debugger;
+            var linhaDoItem = $(btn).parents('[item-id]');
             var idProduto = $(linhaDoItem).attr('item-id');
-            var itemQtde = $(btn).find('input').val();
+            var itemQtde = $(linhaDoItem).find('input').val();
+
             var data =
             {
-                Id = idProduto,
-                Quantidade = itemQtde
+                Id: idProduto,
+                Quantidade: itemQtde
             };
 
             $.ajax({
@@ -108,7 +113,6 @@
                 contentType: 'application/json',
                 data: JSON.stringify(data)
             });
-            debugger;
         }
 
     </script>
