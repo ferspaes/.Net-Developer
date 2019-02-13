@@ -47,9 +47,9 @@ namespace CasaDoCodigo.Controllers
         }
 
         [HttpPost]
-        public void UpdateQuantidadePedido([FromBody]ItemPedido item)
+        public UpdateQuantidadeResponse UpdateQuantidadePedido([FromBody]ItemPedido item)
         {
-            itemPedidoRepository.UpdatePedidoQuantidade(item);
+            return pedidoRepository.UpdatePedidoQuantidade(item);
         }
     }
 }

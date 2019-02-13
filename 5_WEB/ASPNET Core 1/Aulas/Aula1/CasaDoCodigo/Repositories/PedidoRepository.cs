@@ -1,4 +1,6 @@
 ﻿using CasaDoCodigo.Models;
+using CasaDoCodigo.Models.ViewModels;
+using CasaDoCodigo.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,10 +11,12 @@ namespace CasaDoCodigo.Repositories
     public class PedidoRepository : BaseRepository<Pedido>, IPedidoRepository
     {
         private readonly IHttpContextAccessor contextAccessor;
+        private readonly IItemPedidoRepository itemPedidoRepository;
 
-        public PedidoRepository(ApplicationContext contexto, IHttpContextAccessor contextAccessor) : base(contexto)
+        public PedidoRepository(ApplicationContext contexto, IHttpContextAccessor contextAccessor, IItemPedidoRepository itemPedidoRepository) : base(contexto)
         {
             this.contextAccessor = contextAccessor;
+            this.itemPedidoRepository = itemPedidoRepository;
         }
 
         public void AddItem(string codigo)
@@ -61,14 +65,24 @@ namespace CasaDoCodigo.Repositories
 
         }
 
-        private int? GetPedidoId()
-        {
-            return contextAccessor.HttpContext.Session.GetInt32("pedidoId");
-        }
+        private int? GetPedidoId() => contextAccessor.HttpContext.Session.GetInt32("pedidoId");
 
-        private void SetPedidoId(int pedidoId)
+        private void SetPedidoId(int pedidoId) => contextAccessor.HttpContext.Session.SetInt32("pedidoId", pedidoId);
+
+        public UpdateQuantidadeResponse UpdatePedidoQuantidade(ItemPedido itemPedido)
         {
-            contextAccessor.HttpContext.Session.SetInt32("pedidoId", pedidoId);
+            var itemPedidoDB = itemPedidoRepository.GetItemPedido(itemPedido.Id);
+
+            if (itemPedidoDB != null)
+            {
+                itemPedidoDB.AtualizarQuantidade(itemPedido.Quantidade);
+                contexto.SaveChanges();
+
+                var carrinhoViewModel = new CarrinhoViewModel(GetPedido().Items);
+                return new UpdateQuantidadeResponse(itemPedido, carrinhoViewModel);
+            }
+
+            throw new ArgumentException("Item Pedido Não Encontrado!");
         }
     }
 }
