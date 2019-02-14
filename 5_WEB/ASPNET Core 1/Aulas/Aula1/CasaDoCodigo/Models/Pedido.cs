@@ -10,25 +10,8 @@ namespace CasaDoCodigo.Models
         [Required]
         public virtual Cadastro Cadastro { get; private set; }
 
-        public Pedido()
-        {
-            Cadastro = new Cadastro()
-            {
-                Bairro = "bairro",
-                CEP = "cep",
-                Complemento = "complemento",
-                Email = "email",
-                Endereco = "endereco",
-                Municipio = "municipio",
-                Nome = "nome",
-                Telefone = "telefone",
-                UF = "uf"
-            };
-        }
+        public Pedido() => Cadastro = new Cadastro() { };
 
-        public Pedido(Cadastro cadastro)
-        {
-            Cadastro = cadastro;
-        }
+        public Pedido(Cadastro cadastro) => Cadastro = cadastro;
     }
 }

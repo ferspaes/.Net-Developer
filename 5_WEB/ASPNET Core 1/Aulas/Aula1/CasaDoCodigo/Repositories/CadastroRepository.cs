@@ -1,10 +1,15 @@
 ﻿using CasaDoCodigo.Models;
-using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace CasaDoCodigo.Repositories
 {
     public class CadastroRepository : BaseRepository<Cadastro>, ICadastroRepository
     {
         public CadastroRepository(ApplicationContext contexto) : base(contexto) { }
+
+        public Cadastro Update(int cadastroId, Cadastro novoCadastro)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

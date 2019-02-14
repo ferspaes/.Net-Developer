@@ -35,9 +35,6 @@ namespace CasaDoCodigo.Models
             PrecoUnitario = precoUnitario;
         }
 
-        public void AtualizarQuantidade(int quantidade)
-        {
-            Quantidade = quantidade;
-        }
+        public void AtualizarQuantidade(int quantidade) => Quantidade = quantidade;
     }
 }
