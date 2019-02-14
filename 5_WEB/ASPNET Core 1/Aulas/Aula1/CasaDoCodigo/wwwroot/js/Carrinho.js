@@ -35,11 +35,22 @@ class Carrinho {
             contentType: 'application/json',
             data: JSON.stringify(data)
         }).done(function (response) {
+            debugger;
+
             let itemPedido = response.itemPedido;
             let linhaDoItem = $('[item-id=' + itemPedido.id + ']');
+
             linhaDoItem.find('input').val(itemPedido.quantidade);
-            linhaDoItem.find('[subtotal]').html((itemPedido.subtotal).duasCasas());
-            debugger;
+            linhaDoItem.find('[subtotal]').html((itemPedido.subTotal).duasCasas());
+
+            let carrinhoViewModel = response.carrinhoViewModel;
+
+            $('[numero-itens]').html('Total: ' + carrinhoViewModel.items.length + ' itens');
+            $('[total]').html((carrinhoViewModel.total).duasCasas());
+
+            if (itemPedido.quantidade === 0) {
+                linhaDoItem.remove();
+            }
         });
     }
 }

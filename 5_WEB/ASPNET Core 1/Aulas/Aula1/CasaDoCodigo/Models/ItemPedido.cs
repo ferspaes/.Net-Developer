@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 namespace CasaDoCodigo.Models
@@ -24,7 +23,7 @@ namespace CasaDoCodigo.Models
         public decimal PrecoUnitario { get; set; }
 
         [DataMember]
-        public decimal SubTotal => PrecoUnitario * Quantidade;
+        public decimal subTotal => PrecoUnitario * Quantidade;
 
         public ItemPedido() { }
 
@@ -36,7 +35,7 @@ namespace CasaDoCodigo.Models
             PrecoUnitario = precoUnitario;
         }
 
-        internal void AtualizarQuantidade(int quantidade)
+        public void AtualizarQuantidade(int quantidade)
         {
             Quantidade = quantidade;
         }

@@ -14,5 +14,11 @@ namespace CasaDoCodigo.Repositories
                     .Where(item => item.Id == idItemPedido)
                     .SingleOrDefault();
         }
+
+        public void RemoveItemPedido(int idItemPedido)
+        {
+            var itemPedido = GetItemPedido(idItemPedido);
+            DBSet.Remove(itemPedido);
+        }
     }
 }
