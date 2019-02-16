@@ -9,10 +9,7 @@ namespace CasaDoCodigo.Models.ViewModels
     {
         public IList<ItemPedido> Items { get; }
 
-        public CarrinhoViewModel(IList<ItemPedido> items)
-        {
-            Items = items;
-        }
+        public CarrinhoViewModel(IList<ItemPedido> items) => Items = items;
 
         public decimal Total => Items.Sum(item => item.Quantidade * item.PrecoUnitario);
     }
