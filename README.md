@@ -1,5 +1,6 @@
-# .Net-Developer
-## .Net Developer Full Course
+# .Net-Developer Career
+##### - See The Final Project:
+![FinalProject](https://github.com/ferjesusjs8/.Net-Developer/blob/master/WEB/ASPNET%20Core_Part%202/CasaDoCodigo/wwwroot/images/Final_Project_AspNetCore_MVC_EntityFrameworkCore.gif)
 
 Thats all you need to know to be a .Net Developer
 #### This course is from Alura and the Link for the full path is right here [Alura - .Net Developer Course](https://cursos.alura.com.br/formacao-dotnet)
