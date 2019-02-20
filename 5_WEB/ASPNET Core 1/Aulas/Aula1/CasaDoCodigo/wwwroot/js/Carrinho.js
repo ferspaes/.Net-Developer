@@ -29,7 +29,6 @@ class Carrinho {
     }
 
     postQuantidade(data) {
-
         let token = $('[name=__RequestVerificationToken]').val();
         let headers = {};
         headers['RequestVerificationToken'] = token;
@@ -41,7 +40,6 @@ class Carrinho {
             data: JSON.stringify(data),
             headers: headers
         }).done(function (response) {
-
             let itemPedido = response.itemPedido;
             let linhaDoItem = $('[item-id=' + itemPedido.id + ']');
 

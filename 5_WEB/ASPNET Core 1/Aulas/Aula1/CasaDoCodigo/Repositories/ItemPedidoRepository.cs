@@ -8,12 +8,9 @@ namespace CasaDoCodigo.Repositories
     {
         public ItemPedidoRepository(ApplicationContext contexto) : base(contexto) { }
 
-        public ItemPedido GetItemPedido(int idItemPedido)
-        {
-            return DBSet
+        public ItemPedido GetItemPedido(int idItemPedido) => DBSet
                     .Where(item => item.Id == idItemPedido)
                     .SingleOrDefault();
-        }
 
         public void RemoveItemPedido(int idItemPedido)
         {

@@ -55,6 +55,7 @@ namespace CasaDoCodigo.Repositories
             var pedidoEncontrado = DBSet
                                     .Include(pedido => pedido.Items)
                                         .ThenInclude(itemPedido => itemPedido.Produto)
+                                    .Include(pedido => pedido.Cadastro)
                                     .Where(pedido => pedido.Id.Equals(pedidoId))
                                     .SingleOrDefault();
 

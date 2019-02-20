@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CasaDoCodigo.Models
 {
@@ -12,30 +13,43 @@ namespace CasaDoCodigo.Models
         public string Nome { get; set; } = "";
 
 
-        [Required(ErrorMessage = "Nome é obrigatório.")]
+        [Required(ErrorMessage = "Email é obrigatório.")]
         public string Email { get; set; } = "";
 
-        [Required(ErrorMessage = "Nome é obrigatório.")]
+        [Required(ErrorMessage = "Telefone é obrigatório.")]
         public string Telefone { get; set; } = "";
 
-        [Required(ErrorMessage = "Nome é obrigatório.")]
+        [Required(ErrorMessage = "Endereco é obrigatório.")]
         public string Endereco { get; set; } = "";
 
-        [Required(ErrorMessage = "Nome é obrigatório.")]
+        [Required(ErrorMessage = "Complemento é obrigatório.")]
         public string Complemento { get; set; } = "";
 
-        [Required(ErrorMessage = "Nome é obrigatório.")]
+        [Required(ErrorMessage = "Bairro é obrigatório.")]
         public string Bairro { get; set; } = "";
 
-        [Required(ErrorMessage = "Nome é obrigatório.")]
+        [Required(ErrorMessage = "Municipio é obrigatório.")]
         public string Municipio { get; set; } = "";
 
-        [Required(ErrorMessage = "Nome é obrigatório.")]
+        [Required(ErrorMessage = "UF é obrigatório.")]
         public string UF { get; set; } = "";
 
-        [Required(ErrorMessage = "Nome é obrigatório.")]
+        [Required(ErrorMessage = "CEP é obrigatório.")]
         public string CEP { get; set; } = "";
 
         public Cadastro() { }
+
+        public void Update(Cadastro novoCadastro)
+        {
+            Bairro = novoCadastro.Bairro;
+            CEP = novoCadastro.CEP;
+            Complemento = novoCadastro.Complemento;
+            Email = novoCadastro.Email;
+            Endereco = novoCadastro.Endereco;
+            Municipio = novoCadastro.Municipio;
+            Nome = novoCadastro.Nome;
+            Telefone = novoCadastro.Telefone;
+            UF = novoCadastro.UF;
+        }
     }
 }

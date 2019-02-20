@@ -20,12 +20,8 @@ namespace CasaDoCodigo.Controllers
             this.itemPedidoRepository = itemPedidoRepository;
         }
 
-        public IActionResult Carrossel()
-        {
-            return View(produtoRepository.GetProdutos());
-        }
+        public IActionResult Carrossel() => View(produtoRepository.GetProdutos());
 
-        [HttpPost]
         public IActionResult Cadastro()
         {
             var pedido = pedidoRepository.GetPedido();
@@ -59,9 +55,6 @@ namespace CasaDoCodigo.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public UpdateQuantidadeResponse UpdateQuantidadePedido([FromBody]ItemPedido item)
-        {
-            return pedidoRepository.UpdatePedidoQuantidade(item);
-        }
+        public UpdateQuantidadeResponse UpdateQuantidadePedido([FromBody]ItemPedido item) => pedidoRepository.UpdatePedidoQuantidade(item);
     }
 }

@@ -3,22 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Recursos", "_Recursos", "{A28E998F-BEBB-4D44-B58E-FDC4305848AB}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dados", "dados", "{7B729AFF-9C27-42AA-9EAE-1CB9C47AAEE6}"
-	ProjectSection(SolutionItems) = preProject
-		_Recursos\dados\modelo.png = _Recursos\dados\modelo.png
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "produtos", "produtos", "{1999EB61-BD5A-4CFC-8BC7-EB1B9B857DBC}"
-	ProjectSection(SolutionItems) = preProject
-		_Recursos\produtos\livros.txt = _Recursos\produtos\livros.txt
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aulas", "Aulas", "{6474456B-3094-4366-B537-73466B93B359}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aula1", "Aula1", "{BC06BC52-4BE8-44D8-8062-6AC245BFF722}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CasaDoCodigo", "Aulas\Aula1\CasaDoCodigo\CasaDoCodigo.csproj", "{178B613C-AD1F-4248-9312-E7D23D825D3D}"
 EndProject
 Global
@@ -34,12 +18,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{7B729AFF-9C27-42AA-9EAE-1CB9C47AAEE6} = {A28E998F-BEBB-4D44-B58E-FDC4305848AB}
-		{1999EB61-BD5A-4CFC-8BC7-EB1B9B857DBC} = {A28E998F-BEBB-4D44-B58E-FDC4305848AB}
-		{BC06BC52-4BE8-44D8-8062-6AC245BFF722} = {6474456B-3094-4366-B537-73466B93B359}
-		{178B613C-AD1F-4248-9312-E7D23D825D3D} = {BC06BC52-4BE8-44D8-8062-6AC245BFF722}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6FED210B-3460-45CF-9C4D-877F0D63546F}
